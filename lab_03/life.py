@@ -38,6 +38,7 @@ class GameOfLife:
         clock = pygame.time.Clock()
         pygame.display.set_caption('Game of Life')
         self.screen.fill(pygame.Color('white'))
+        self.clist = self.cell_list()
 
         # Создание списка клеток
         # PUT YOUR CODE HERE
@@ -48,7 +49,8 @@ class GameOfLife:
                 if event.type == QUIT:
                     running = False
             self.draw_grid()
-
+            self.draw_cell_list(self.clist)
+            sell.update_cell_list(self.clist)
             # Отрисовка списка клеток
             # Выполнение одного шага игры (обновление состояния ячеек)
             # PUT YOUR CODE HERE
@@ -80,8 +82,8 @@ class GameOfLife:
         return self.clist
 
     def draw_cell_list(self, clist):
-        for i in range(self.cell_height):
-            for j in range(self.cell_width):
+        for i in range(self.cell_height-1):
+            for j in range(self.cell_width-1):
                 x = j * self.cell_size + 1
                 y = i * self.cell_size + 1
                 a = self.cell_size - 1
